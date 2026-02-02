@@ -11,7 +11,7 @@ const Home = () => {
     const location = useLocation()
 
     const [active, setActive] = useState(location.state?.activeTab || 'movie')
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery] = useState('')
 
     const { movies, loading: loadingMovies } = useMovies()
     const { theaters, loading: loadingTheaters } = useTheaters()

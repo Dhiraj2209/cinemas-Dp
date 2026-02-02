@@ -145,7 +145,6 @@ const ScreenPage = () => {
     }
 
     const totalPrice = selectedSeats.reduce((sum, s) => sum + getPriceForTypeCalc(s.layoutType), 0)
-    const seatsLeft = seatLimit - selectedSeats.length
 
     if (loading) return (
         <div className="loading-container" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

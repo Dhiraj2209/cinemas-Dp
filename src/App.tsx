@@ -22,7 +22,7 @@ import ProtectedRoute from './ProtectedRoute'
 import { useAuth } from './auth/AuthContext'
 
 function App() {
-  const { isAuthenticated } = useAuth()
+  useAuth()
 
   const CatchAllRoute = () => {
     return <Login />

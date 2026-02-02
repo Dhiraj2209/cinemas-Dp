@@ -22,11 +22,8 @@ const MovieDetail = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>("*Select Time Slot")
   const [selectedTheaterName, setSelectedTheaterName] = useState<string | null>("*Select Theater First")
   const [showModal, setShowModal] = useState(false)
-  const [noOfSeat, setnoOfSeat] = useState(1);
+  const [noOfSeat] = useState(1);
   const [showId, setShowId] = useState("")
-
-  const [isMovieLoading, setIsMovieLoading] = useState(true);
-  const [isTimesLoading, setIsTimesLoading] = useState(false);
 
   const datesContainerRef = useRef<HTMLDivElement>(null);
 
@@ -49,7 +46,6 @@ const MovieDetail = () => {
     if (!token) return
 
     const fetchMovies = async () => {
-      setIsMovieLoading(true);
       try {
         const res = await fetch(
           `/api/movies/${movieId}`,
@@ -88,7 +84,7 @@ const MovieDetail = () => {
           setTimeout(() => navigate('/404'), 1000) // Navigate to 404 page
         }
       } finally {
-        setIsMovieLoading(false);
+
       }
     }
 
@@ -98,8 +94,6 @@ const MovieDetail = () => {
 
   async function findDateTime(mId: string, tId: string) {
     if (!token) return
-
-    setIsTimesLoading(true);
     setDateTimeMap({});
     setSelectedDate(null);
     setSelectedTheater(tId);
@@ -184,7 +178,6 @@ const MovieDetail = () => {
       console.error("Failed to fetch date/time:", err)
       // Error handled globally for 401
     } finally {
-      setIsTimesLoading(false);
     }
   }
 
