@@ -1,0 +1,65 @@
+/* Booking Details - Simple */
+
+.booking-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.ticketCard {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ticketCard h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ticketCard p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.ticketCard hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.proceed-btn,
+.cancel-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.proceed-btn {
+    background: #333;
+    color: white;
+    border: 1px solid #333;
+}
+
+.proceed-btn:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+    .ticketCard {
+        padding: 20px;
+    }
+}

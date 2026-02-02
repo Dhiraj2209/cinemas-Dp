@@ -1,0 +1,288 @@
+/* ============================================
+   SEAT SELECTION PAGE STYLES
+   ============================================ */
+
+.screen-container {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    width: 100%;
+    min-height: calc(100vh - 80px);
+}
+
+.screen-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.screen-heading i {
+    font-size: 24px;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+}
+
+.screen-heading i:active {
+    opacity: 0.8;
+}
+
+.screen-heading h2 {
+    font-size: clamp(28px, 4vw, 45px);
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.seats {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: var(--spacing-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seat-section {
+    width: 100%;
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(16, 144, 223, 0.08);
+}
+
+.seat-section h6 {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+}
+
+.seat-section hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--primary-color),
+            transparent);
+    margin-bottom: var(--spacing-lg);
+}
+
+.seat-row {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    justify-content: center;
+}
+
+.seat-row button {
+    padding: 10px 14px;
+    border: 2px solid var(--primary-color);
+    background: var(--white);
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(16, 144, 223, 0.08);
+    min-width: 45px;
+}
+
+.seat-row button:disabled {
+    background: var(--gray-dark);
+    color: var(--gray-medium);
+    border-color: var(--gray-dark);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.theater-screen {
+    width: 80%;
+    height: 8px;
+    background: linear-gradient(to bottom,
+            var(--gray-dark),
+            var(--gray-medium));
+    margin: var(--spacing-2xl) auto var(--spacing-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.theater-screen::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+}
+
+.seats>p {
+    color: var(--gray-dark);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+    text-align: center;
+}
+
+/* Seats Left Counter */
+.seats-left {
+    font-size: 18px;
+    margin: var(--spacing-xl) 0;
+    color: var(--gray-dark);
+    font-weight: 600;
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: var(--shadow-sm);
+}
+
+.seats-left.remaining {
+    color: var(--error-color);
+    font-weight: 700;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Pay Button - Simple */
+.pay-btn {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border: 1px solid #333;
+}
+
+.pay-btn:hover:not(.disabled) {
+    opacity: 0.8;
+}
+
+.pay-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #ccc;
+    border-color: #ccc;
+}
+
+/* Loading State */
+.loading {
+    padding: var(--spacing-2xl);
+    font-size: 18px;
+    text-align: center;
+    color: var(--primary-color);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .screen-container {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .screen-heading h2 {
+        font-size: 32px;
+    }
+
+    .seats {
+        width: 95%;
+    }
+
+    .seat-section {
+        padding: var(--spacing-lg);
+    }
+
+    .seat-row button {
+        padding: 8px 12px;
+        min-width: 40px;
+        font-size: 11px;
+    }
+
+    .theater-screen {
+        width: 90%;
+    }
+
+    .pay-btn {
+        width: 95%;
+        font-size: 18px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .screen-container {
+        padding: var(--spacing-md);
+    }
+
+    .screen-heading {
+        gap: var(--spacing-md);
+    }
+
+    .screen-heading h2 {
+        font-size: 24px;
+    }
+
+    .seats {
+        width: 100%;
+        margin-top: var(--spacing-lg);
+    }
+
+    .seat-section {
+        padding: var(--spacing-md);
+    }
+
+    .seat-section h6 {
+        font-size: 16px;
+    }
+
+    .seat-row {
+        gap: 4px;
+    }
+
+    .seat-row button {
+        padding: 6px 8px;
+        min-width: 32px;
+        font-size: 10px;
+    }
+
+    .theater-screen {
+        width: 95%;
+        height: 6px;
+    }
+
+    .seats-left {
+        font-size: 16px;
+    }
+
+    .pay-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 14px 20px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+    .seat-row button {
+        padding: 5px 6px;
+        min-width: 28px;
+        font-size: 9px;
+    }
+
+    .seat-row {
+        gap: 3px;
+    }
+}

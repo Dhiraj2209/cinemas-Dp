@@ -1,0 +1,29 @@
+/* Base Card Styles */
+.cardsList .card {
+    /* Width is handled by Grid in home.css */
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cardsList .card img {
+    transition: 0.3s;
+    width: 100%;
+    /* Height is handled in home.css media queries */
+}
+
+.card {
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    /* Remove fixed height to allow fluid content */
+}
+
+.card h4 {
+    margin-top: 20px;
+    color: #1090DF;
+}
+
+.cardsList .card:hover {
+    transform: scale(1.03);
+}

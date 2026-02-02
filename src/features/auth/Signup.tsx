@@ -1,0 +1,149 @@
+import { useEffect, useState } from 'react'
+import './signup.css'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../auth/AuthContext'
+import { authService } from '../../services/authService'
+
+const Signup = () => {
+
+    const navigate = useNavigate()
+    const { isAuthenticated } = useAuth()
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/home')
+        }
+    }, [isAuthenticated, navigate])
+
+    const [fName, setfName] = useState('')
+    const [lName, setlName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
+
+    const register = async () => {
+
+        if (!fName || !lName || !email || !password) {
+            console.warn("Please Enter All Details")
+            return
+        }
+
+        const emailRegex = /^\S+@\S+\.\S+$/
+        if (!emailRegex.test(email)) {
+            console.warn("Please enter a valid email address")
+            return
+        }
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+        if (!passwordRegex.test(password)) {
+            console.warn(
+                "Password must be at least 8 characters long, include uppercase, lowercase, and a number"
+            )
+            return
+        }
+
+        try {
+            await authService.signup({ firstName: fName, lastName: lName, email, password })
+
+            console.log("Registration Successful! Please Login Now")
+            setfName('')
+            setlName('')
+            setEmail('')
+            setPassword('')
+            // navigate("/")
+        } catch (err: any) {
+            console.error(err)
+            const errorMessage = err.response?.data?.message || err.message || "Something went wrong. Try again."
+            console.error(errorMessage)
+        }
+    }
+
+    return (
+        <>
+            <div className="loginContainer">
+                <div className='loginLeft'>
+                    <img src='logo.png' width={150} alt="Logo" />
+                    <br />
+                    <div>
+                        <h1>
+                            Welcome.
+                            <br />
+                            Begin your cinematic adventure now with our ticketing platform!
+                        </h1>
+                    </div>
+                </div>
+                <div className='loginRight'>
+                    <div>
+                        <h2>Create An Account</h2>
+                    </div>
+                    <div>
+                        <p>First Name</p>
+                        <input
+                            id='fName'
+                            required
+                            type='text'
+                            name='fName'
+                            placeholder='Enter Your First Name'
+                            value={fName}
+                            onChange={e => setfName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <p>Last Name</p>
+                        <input
+                            id='lName'
+                            required
+                            type='text'
+                            name='lName'
+                            placeholder='Enter Your Last Name'
+                            value={lName}
+                            onChange={e => setlName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <p>Email</p>
+                        <input
+                            id='email'
+                            required
+                            type='email'
+                            name='email'
+                            placeholder='Enter Your Email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="passwordBox" id='passBox'>
+                        <p>Password</p>
+                        <input
+                            id='password'
+                            required
+                            type={showPassword ? 'text' : 'password'}
+                            name='password'
+                            placeholder='Enter Your Password'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <i
+                            className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                            onClick={() => setShowPassword(!showPassword)}
+                        ></i>
+                    </div>
+
+                    <div>
+                        <button type='submit' onClick={register}>Sign Up</button>
+                    </div>
+                    <div style={{ textAlign: 'center' }}>
+                        <p>
+                            Already Have An Account?{" "}
+                            <a href='#' style={{ color: '#1090DF' }} onClick={(e) => { e.preventDefault(); navigate('/'); }}>
+                                Log In
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Signup

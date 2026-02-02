@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loginContainer {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* LEFT PANEL */
+.loginLeft {
+  flex: 1;
+  background: #dff3ff;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* LOGO TOP LEFT */
+.loginLeft img {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+}
+
+/* TEXT */
+.loginLeft h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.3;
+}
+
+.loginLeft span {
+  font-weight: 800;
+}
+
+/* RIGHT PANEL */
+.loginRight {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+
+.loginRight h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+/* LABELS */
+.loginRight p {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #000;
+}
+
+/* INPUT FIELDS */
+.loginRight input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px; /* slightly rounded */
+  font-size: 14px;
+  margin-bottom: 25px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.loginRight input:focus {
+  border-color: #1090df;
+}
+
+/* PASSWORD FIELD */
+.passwordBox {
+  position: relative;
+}
+
+.passwordBox i {
+  position: absolute;
+  right: 15px;
+  top: 40px;
+  cursor: pointer;
+  color: #777;
+}
+
+/* LOGIN BUTTON */
+.loginRight button {
+  width: 100%;
+  padding: 14px;
+  background: #1090df;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px; /* slightly rounded */
+  transition: all 0.3s ease;
+}
+
+/* BUTTON HOVER EFFECT */
+.loginRight button:hover {
+  background: #0b7fc6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(16, 144, 223, 0.35);
+}
+
+/* REGISTER LINK */
+.loginRight a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.loginRight a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .loginContainer {
+    flex-direction: column;
+  }
+
+  .loginLeft {
+    display: none;
+  }
+
+  .loginRight {
+    padding: 40px;
+  }
+}

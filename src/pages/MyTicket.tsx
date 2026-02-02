@@ -1,0 +1,92 @@
+import { useEffect, useState } from 'react'
+import Navbar from '../components/layout/Navbar'
+import './myTicket.css'
+import Ticket from '../features/booking/Ticket'
+import type { Order } from '../types'
+
+const MyTicket = () => {
+    const [active, setActive] = useState('upcoming')
+    const [orders, setOrders] = useState<Order[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        const fetchOrders = async () => {
+            const token = localStorage.getItem('accessToken')
+            if (!token) return
+
+            try {
+                const res = await fetch("/api/orders", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                if (res.ok) {
+                    const data: Order[] = await res.json()
+                    // Start from newest
+                    data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                    setOrders(data)
+                } else {
+                    // For 401, dispatch event and let global handler manage it
+                    if (res.status === 401) {
+                        window.dispatchEvent(new Event('auth:unauthorized'));
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch orders", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchOrders()
+    }, [])
+
+    const now = new Date()
+
+    const upcomingOrders = orders.filter(order => order.status === 'COMPLETED' && new Date(order.showtime.startTime) > now)
+
+    const historyOrders = orders.filter(order => order.status !== 'PENDING' && new Date(order.showtime.startTime) <= now)
+
+    return (
+        <>
+            <Navbar page="tsk" />
+
+            <div className='container'>
+                <h1>My Tickets</h1>
+                <div className='categoryBtn'>
+                    <button
+                        className={active === 'upcoming' ? 'active' : ''}
+                        onClick={() => setActive('upcoming')}
+                    >
+                        Upcoming
+                    </button>
+
+                    <button
+                        className={active === 'history' ? 'active' : ''}
+                        onClick={() => setActive('history')}
+                    >
+                        History
+                    </button>
+                </div>
+            </div>
+
+            <div className={`ticketList ${active !== 'upcoming' ? 'hidden' : ''}`}>
+                {upcomingOrders.length === 0 && !loading && <p className="no-ticket">No upcoming tickets</p>}
+                {upcomingOrders.map(order => (
+                    <Ticket key={order.id} order={order} />
+                ))}
+            </div>
+
+            <div className={`ticketList ${active !== 'history' ? 'hidden' : ''}`}>
+                {historyOrders.length === 0 && !loading && <p className="no-ticket">No booking history</p>}
+                {historyOrders.map(order => (
+                    <Ticket key={order.id} order={order} />
+                ))}
+            </div>
+        </>
+    )
+}
+
+export default MyTicket

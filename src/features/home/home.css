@@ -1,0 +1,301 @@
+/* ============================================
+   HOME PAGE STYLES
+   ============================================ */
+
+/* Main Container */
+.container {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Page Title */
+.container h1 {
+    color: var(--primary-color);
+    font-size: clamp(32px, 5vw, 48px);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(16, 144, 223, 0.08);
+}
+
+/* Controls Wrapper */
+.controls-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.container .categoryBtn {
+    margin-bottom: 0;
+}
+
+.container .categoryBtn button {
+    padding: 12px 28px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    margin-right: var(--spacing-md);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(16, 144, 223, 0.08);
+    position: relative;
+}
+
+.container .categoryBtn button.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 2px 6px rgba(16, 144, 223, 0.12);
+}
+
+.container .categoryBtn button:active {
+    opacity: 0.9;
+}
+
+/* Search Box Styles */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    color: var(--primary-color);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.search-box input {
+    padding: 12px 20px 12px 45px;
+    border: 2px solid #e0e0e0;
+    font-size: 16px;
+    width: 300px;
+    outline: none;
+    color: #333;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 2px 6px rgba(16, 144, 223, 0.1);
+}
+
+.no-results {
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: var(--gray-dark);
+    font-weight: 500;
+}
+
+/* Cards List */
+.cardsList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    justify-items: center;
+}
+
+/* Theater List */
+.theaterList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Individual Card */
+.cardsList .card {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin: 0;
+    transition: box-shadow 0.2s ease;
+}
+
+.cardsList .card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(16, 144, 223, 0.08);
+    display: block;
+}
+
+/* Card Title */
+.cardsList .card h4 {
+    position: relative;
+    z-index: 3;
+    margin-top: var(--spacing-md);
+    color: var(--black);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Large Desktop */
+@media (min-width: 1600px) {
+    .cardsList {
+        grid-template-columns: repeat(5, 1fr);
+        width: 85%;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .cardsList {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) and (max-width: 1399px) {
+    .cardsList {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-md);
+        width: 90%;
+    }
+
+    .cardsList .card img {
+        height: 380px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: var(--spacing-xl) var(--spacing-lg);
+        width: 90%;
+    }
+
+    .cardsList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-md);
+        width: 95%;
+    }
+
+    .theaterList {
+        width: 95%;
+    }
+
+    .cardsList .card img {
+        height: 350px;
+    }
+}
+
+/* Mobile Landscape */
+@media (min-width: 550px) and (max-width: 767px) {
+    .container {
+        padding: var(--spacing-lg) var(--spacing-md);
+        width: 95%;
+    }
+
+    .container h1 {
+        font-size: 32px;
+    }
+
+    .container .categoryBtn button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .cardsList {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+        width: 100%;
+        padding: 0 var(--spacing-md);
+    }
+
+    .theaterList {
+        width: 100%;
+        padding: 0 var(--spacing-md);
+    }
+
+    .cardsList .card img {
+        height: 320px;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 549px) {
+    .container {
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+
+    .controls-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .search-box input:focus {
+        width: 100%;
+    }
+
+    .container .categoryBtn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .container h1 {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .cardsList {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        width: 100%;
+        padding: 0 var(--spacing-lg);
+    }
+
+    .theaterList {
+        width: 100%;
+        padding: 0 var(--spacing-md);
+    }
+
+    .cardsList .card {
+        max-width: 100%;
+    }
+
+    .cardsList .card img {
+        height: 400px;
+    }
+
+    .cardsList .card h4 {
+        font-size: 18px;
+    }
+}

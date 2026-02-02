@@ -1,0 +1,100 @@
+/* ============================================
+   THEATER COMPONENT STYLES
+   ============================================ */
+
+.theater {
+    width: 100%;
+    padding: var(--spacing-xl);
+    border: 2px solid var(--primary-color);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(16, 144, 223, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.theater div h2 {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.theater div p {
+    color: var(--gray-dark);
+    font-size: 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.theater div p i {
+    color: var(--primary-color);
+}
+
+.theater .fa-arrow-right {
+    font-size: 24px;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 2;
+}
+
+.theater-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .theater {
+        padding: var(--spacing-lg);
+    }
+
+    .theater div h2 {
+        font-size: 20px;
+    }
+
+    .theater div p {
+        font-size: 14px;
+    }
+
+    .theater .fa-arrow-right {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .theater {
+        padding: var(--spacing-md);
+    }
+
+    .theater div h2 {
+        font-size: 18px;
+    }
+
+    .theater div p {
+        font-size: 13px;
+    }
+
+    .theater .fa-arrow-right {
+        font-size: 18px;
+    }
+}
+    }
+
+    .theater div p {
+        font-size: 13px;
+    }
+
+    .theater .fa-arrow-right {
+        font-size: 18px;
+    }
+}
